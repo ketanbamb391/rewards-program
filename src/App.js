@@ -1,54 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import Customer from './Customer';
-import { calculateTotalPoints } from './utils';
+// src/App.js
 
-const App = () => {
-  const [customers, setCustomers] = useState([]);
-  const [loading, setLoading] = useState(true);
+import React from 'react';
+import './App.css';  
+import RewardsCalculator from './components/RewardsCalculator'; 
 
-  // Simulating an API call to fetch customer data
-  useEffect(() => {
-    setTimeout(() => {
-      const fakeData = [
-        {
-          customerId: "1",
-          customerName: "John Doe",
-          transactions: [
-            { amount: 120, month: "January" },
-            { amount: 90, month: "January" },
-            { amount: 130, month: "February" },
-            { amount: 75, month: "March" },
-          ]
-        },
-        {
-          customerId: "2",
-          customerName: "Jane Smith",
-          transactions: [
-            { amount: 150, month: "January" },
-            { amount: 60, month: "February" },
-            { amount: 80, month: "March" },
-          ]
-        }
-      ];
-      setCustomers(fakeData);
-      setLoading(false);
-    }, 2000); // Simulate a 2-second delay
-  }, []);
-
-  // Render loading state while data is being fetched
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
+function App() {
   return (
-    <div>
-      <h1>Customer Rewards Points</h1>
-      {customers.map((customer) => (
-        <Customer key={customer.customerId} customer={customer} />
-      ))}
-      <h2>Total Points: {calculateTotalPoints(customers)}</h2>
+    <div className="App">
+      <header className="App-header">
+        <h1>Welcome to the Rewards Program</h1>
+      </header>
+      <main>
+        {/* Rendering the RewardsCalculator component */}
+        <RewardsCalculator />
+      </main>
     </div>
   );
-};
+}
 
 export default App;
